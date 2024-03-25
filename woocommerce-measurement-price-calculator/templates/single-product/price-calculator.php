@@ -44,23 +44,12 @@ $total_amount_text = apply_filters(
 );
 
 ?>
-<table id="price_calculator" class="<?php echo $product->product_type . "_price_calculator" ?>">
+ <span id="price_calculator" class="<?php echo $product->product_type . "_price_calculator" ?>">
 	<?php foreach ( $measurements as $measurement ) : ?>
-	<tr>
-		<td>
-			<label for="<?php echo $measurement->get_name(); ?>_needed">
-			<?php
-				echo ( $measurement->get_unit_label() ?
-					/* translators: Placeholders: %1$s - measurement label, %2$s - measurement unit label */
-					sprintf( __( '%1$s (%2$s)', 'woocommerce-measurement-price-calculator' ), $measurement->get_label(), __( $measurement->get_unit_label(), 'woocommerce-measurement-price-calculator' ) ) :
-					__( $measurement->get_label(), 'woocommerce-measurement-price-calculator' )
-				);
-			?>
-			</label>
-		</td>
-		<td style="text-align:right;">
+
+
 			<?php if ( 0 == count( $measurement->get_options() ) ) : ?>
-				<input type="text" data-unit="<?php echo esc_attr( $measurement->get_unit() ); ?>" data-common-unit="<?php echo esc_attr( $measurement->get_unit_common() ); ?>" name="<?php echo esc_attr( $measurement->get_name() ); ?>_needed" id="<?php echo esc_attr( $measurement->get_name() ); ?>_needed" class="amount_needed" autocomplete="off" />
+				<input type="text" data-unit="<?php echo esc_attr( $measurement->get_unit() ); ?>" data-common-unit="<?php echo esc_attr( $measurement->get_unit_common() ); ?>" name="<?php echo esc_attr( $measurement->get_name() ); ?>_needed" id="<?php echo esc_attr( $measurement->get_name() ); ?>_needed" class="amount_needed" autocomplete="off" />cm
 			<?php elseif ( 1 == count( $measurement->get_options() ) ) : ?>
 				<?php
 					$measurement_options = $measurement->get_options();
@@ -74,21 +63,19 @@ $total_amount_text = apply_filters(
 					<?php endforeach; ?>
 				</select>
 			<?php endif; ?>
-		</td>
-	</tr>
+
 	<?php endforeach; ?>
-	<?php if ( $settings->is_calculator_type_derived() ) : ?>
-		<tr><td><?php echo $total_amount_text; ?></td><td><span class="wc-measurement-price-calculator-total-amount" data-unit="<?php echo esc_attr( $product_measurement->get_unit() ); ?>"></span></td></tr>
-	<?php endif; ?>
-	<tr>
-		<td><?php esc_html_e( 'Product Price', 'woocommerce-measurement-price-calculator' ); ?></td>
-		<td>
-			<span class="product_price"></span>
+
+
+		
+		
+
+			<!-- <span class="product_price"></span> -->
 			<input type="hidden" id="_measurement_needed" name="_measurement_needed" value="" />
 			<input type="hidden" id="_measurement_needed_unit" name="_measurement_needed_unit" value="" />
+			
 			<?php if ( $product->is_sold_individually() ) : ?>
 				<input type="hidden" name="quantity" value="1" />
 			<?php endif; ?>
-		</td>
-	</tr>
-</table>
+
+</span>

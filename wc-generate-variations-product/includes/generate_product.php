@@ -13,7 +13,7 @@ function get_cpt_tours_select($field) {
 
 	foreach ($results as $res){
 	 	$tours_array[] = $res->post_title;
-	 	$field['choices'][ $res->ID ] = $res->post_title;
+	 	//$field['choices'][ $res->ID ] = $res->post_title;
 	 }
 
 	 return $field;
@@ -34,7 +34,7 @@ function get_product_categor($field) {
 
 	foreach ($terms as $res){
 	 	$tours_array[] = $res->name;
-	 	$field['choices'][ $res->term_id ] = $res->name;
+	 	//$field['choices'][ $res->term_id ] = $res->name;
 	 }
 
 	 return $field;
@@ -167,7 +167,7 @@ function save_sync() {
 		    {
 		    	'.$ID.'
 		        '.$name.'
-		        "sku"         : "GEN10009",
+		        "sku"         : "GEN_",
 		        "description" : "",
 		        "available_attributes": [
 		            "sticker_size", "sticker_quantity"
@@ -184,7 +184,8 @@ function save_sync() {
 		//die();
 
 		if($paraments[field_59834eb499045]==0):
-			insert_products($products_data);
+			// insert_products($products_data);
+			insert_product($products_data[0],$paraments[field_598351f2d7f60]);
 		else:
 			edit_products($products_data);
 		endif;
@@ -359,4 +360,17 @@ function save_sync() {
 }
 add_action('acf/save_post', 'save_sync', 20);
 
+
+//add_action( 'save_post', 'wpse_110037_new_posts' );
+
+function wpse_110037_new_posts($post_id){
+    $WC_Product = wc_get_product( $post_id);
+    //  print_r(get_post_custom($post_id)); 
+    // die();
+
+     // $_POST[_measurement_price_calculator] = area-dimension
+   // _measurement_area-dimension_pricing   [_measurement_area-dimension_pricing] => yes
+    //_measurement_area-dimension_pricing_calculator_enabled [_measurement_area-dimension_pricing_calculator_enabled] => yes
+   
+}
 

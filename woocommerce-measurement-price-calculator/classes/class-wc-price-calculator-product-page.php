@@ -470,8 +470,8 @@ class WC_Price_Calculator_Product_Page {
 		<style type="text/css">
 			#price_calculator { border-style:none; }
 			#price_calculator td { border-style:none; vertical-align:middle; }
-			#price_calculator input, #price_calculator span { float:right; }
-			#price_calculator input { width:64px;text-align:right; }
+			/*#price_calculator input, #price_calculator span { float:right; }*/
+			#price_calculator input { width:64px;/*text-align:right;*/ }
 			.variable_price_calculator { display:none; }
 			#price_calculator .calculate td { text-align:right; }
 			#price_calculator .calculate button { margin-right:0; }

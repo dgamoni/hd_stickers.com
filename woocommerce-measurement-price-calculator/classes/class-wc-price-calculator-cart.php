@@ -78,6 +78,7 @@ class WC_Price_Calculator_Cart {
 
 		// "order again" handling
 		add_filter( 'woocommerce_order_again_cart_item_data',      array( $this, 'order_again_cart_item_data' ), 10, 3 );
+	
 	}
 
 
@@ -409,13 +410,15 @@ class WC_Price_Calculator_Cart {
 	 * @return array of name/display pairs of data to display in the cart
 	 */
 	public function display_product_data_in_cart( $data, $item ) {
+		//var_dump($item["variation"]["attribute_pa_sticker_size"]);
+		if ($item["variation"]["attribute_pa_sticker_size"] == 'custom-size') {
+			if ( isset( $item['pricing_item_meta_data'] ) ) {
 
-		if ( isset( $item['pricing_item_meta_data'] ) ) {
+				$display_data = $this->humanize_cart_item_data( $item, $item['pricing_item_meta_data'] );
 
-			$display_data = $this->humanize_cart_item_data( $item, $item['pricing_item_meta_data'] );
-
-			foreach ( $display_data as $name => $value ) {
-				$data[] = array( 'name' => $name, 'display' => $value, 'hidden' => false );
+				foreach ( $display_data as $name => $value ) {
+					$data[] = array( 'name' => $name, 'display' => $value, 'hidden' => false );
+				}
 			}
 		}
 
@@ -884,7 +887,7 @@ class WC_Price_Calculator_Cart {
 					sprintf( __( 'Total %s', 'woocommerce-measurement-price-calculator' ), $product_measurement->get_label() ),
 				$item
 			);
-			$new_cart_item_data[ $total_amount_text ] = $product_measurement->get_value();
+			//$new_cart_item_data[ $total_amount_text ] = $product_measurement->get_value();
 		}
 
 		return $new_cart_item_data;

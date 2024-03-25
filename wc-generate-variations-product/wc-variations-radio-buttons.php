@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 // Check if WooCommerce is active
-if ( is_plugin_active( 'woocommerce/woocommerce.php') ) {
+if ( is_plugin_active( 'woocommerce/woocommerce.php')  && is_plugin_active( 'advanced-custom-fields-pro/acf.php') ) {
 
 	class WC_Radio_Buttons {
 		// plugin version
@@ -30,10 +30,14 @@ if ( is_plugin_active( 'woocommerce/woocommerce.php') ) {
 			//js scripts
 			add_action( 'wp_enqueue_scripts', array( $this, 'load_scripts' ), 999 );
 
+			// load acf
+			include 'includes/load_acf.php';
+
 			// if ( !is_admin() ) {
 			// 	include 'includes/register_variations.php';
 			// }
 			if ( is_admin() ) {
+				//include 'includes/create_atribute.php';
 				include 'includes/options_page.php';
 				include 'includes/register_variations.php';
 				include 'includes/generate_product.php';

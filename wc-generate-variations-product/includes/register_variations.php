@@ -29,7 +29,7 @@ function edit_product ($product_data)
     edit_product_variations($post_id, $product_data['variations']); // Insert variations passing the new post id & variations   
 }
 
-function insert_product ($product_data)  
+function insert_product ($product_data,$custom_size)  
 {
     $post = array( // Set up the basic post data to insert for our product
 
@@ -48,7 +48,7 @@ function insert_product ($product_data)
         return false;
     }
 
-    update_post_meta($post_id, '_sku', $product_data['sku']); // Set its SKU
+    update_post_meta($post_id, '_sku', $product_data['sku'].$post_id); // Set its SKU
     update_post_meta( $post_id,'_visibility','visible'); // Set the product to visible, if not it won't show on the front end
 
     wp_set_object_terms($post_id, $product_data['categories'], 'product_cat'); // Set up its categories
@@ -56,6 +56,11 @@ function insert_product ($product_data)
 
     insert_product_attributes($post_id, $product_data['available_attributes'], $product_data['variations']); // Add attributes passing the new post id, attributes & variations
     insert_product_variations($post_id, $product_data['variations']); // Insert variations passing the new post id & variations   
+    
+    if($custom_size) {
+        $string = 'a:11:{s:15:"calculator_type";s:14:"area-dimension";s:9:"dimension";a:4:{s:7:"pricing";a:6:{s:7:"enabled";s:2:"no";s:5:"label";s:0:"";s:4:"unit";s:2:"cm";s:10:"calculator";a:1:{s:7:"enabled";s:2:"no";}s:9:"inventory";a:1:{s:7:"enabled";s:2:"no";}s:6:"weight";a:1:{s:7:"enabled";s:2:"no";}}s:6:"length";a:5:{s:7:"enabled";s:3:"yes";s:5:"label";s:15:"Required Length";s:4:"unit";s:2:"cm";s:8:"editable";s:3:"yes";s:7:"options";a:1:{i:0;s:0:"";}}s:5:"width";a:5:{s:7:"enabled";s:2:"no";s:5:"label";s:14:"Required Width";s:4:"unit";s:2:"cm";s:8:"editable";s:3:"yes";s:7:"options";a:1:{i:0;s:0:"";}}s:6:"height";a:5:{s:7:"enabled";s:2:"no";s:5:"label";s:15:"Required Height";s:4:"unit";s:2:"cm";s:8:"editable";s:3:"yes";s:7:"options";a:1:{i:0;s:0:"";}}}s:4:"area";a:2:{s:7:"pricing";a:6:{s:7:"enabled";s:2:"no";s:5:"label";s:0:"";s:4:"unit";s:5:"sq cm";s:10:"calculator";a:1:{s:7:"enabled";s:2:"no";}s:9:"inventory";a:1:{s:7:"enabled";s:2:"no";}s:6:"weight";a:1:{s:7:"enabled";s:2:"no";}}s:4:"area";a:4:{s:5:"label";s:13:"Required Area";s:4:"unit";s:5:"sq cm";s:8:"editable";s:3:"yes";s:7:"options";a:1:{i:0;s:0:"";}}}s:14:"area-dimension";a:3:{s:7:"pricing";a:6:{s:7:"enabled";s:3:"yes";s:5:"label";s:0:"";s:4:"unit";s:5:"sq cm";s:10:"calculator";a:1:{s:7:"enabled";s:3:"yes";}s:9:"inventory";a:1:{s:7:"enabled";s:2:"no";}s:6:"weight";a:1:{s:7:"enabled";s:2:"no";}}s:6:"length";a:4:{s:5:"label";s:6:"Length";s:4:"unit";s:2:"cm";s:8:"editable";s:3:"yes";s:7:"options";a:1:{i:0;s:0:"";}}s:5:"width";a:4:{s:5:"label";s:5:"Width";s:4:"unit";s:2:"cm";s:8:"editable";s:3:"yes";s:7:"options";a:1:{i:0;s:0:"";}}}s:11:"area-linear";a:3:{s:7:"pricing";a:6:{s:7:"enabled";s:2:"no";s:5:"label";s:0:"";s:4:"unit";s:2:"cm";s:10:"calculator";a:1:{s:7:"enabled";s:2:"no";}s:9:"inventory";a:1:{s:7:"enabled";s:2:"no";}s:6:"weight";a:1:{s:7:"enabled";s:2:"no";}}s:6:"length";a:4:{s:5:"label";s:6:"Length";s:4:"unit";s:2:"cm";s:8:"editable";s:3:"yes";s:7:"options";a:1:{i:0;s:0:"";}}s:5:"width";a:4:{s:5:"label";s:5:"Width";s:4:"unit";s:2:"cm";s:8:"editable";s:3:"yes";s:7:"options";a:1:{i:0;s:0:"";}}}s:12:"area-surface";a:4:{s:7:"pricing";a:6:{s:7:"enabled";s:2:"no";s:5:"label";s:0:"";s:4:"unit";s:5:"sq cm";s:10:"calculator";a:1:{s:7:"enabled";s:2:"no";}s:9:"inventory";a:1:{s:7:"enabled";s:2:"no";}s:6:"weight";a:1:{s:7:"enabled";s:2:"no";}}s:6:"length";a:4:{s:5:"label";s:6:"Length";s:4:"unit";s:2:"cm";s:8:"editable";s:3:"yes";s:7:"options";a:1:{i:0;s:0:"";}}s:5:"width";a:4:{s:5:"label";s:5:"Width";s:4:"unit";s:2:"cm";s:8:"editable";s:3:"yes";s:7:"options";a:1:{i:0;s:0:"";}}s:6:"height";a:4:{s:5:"label";s:6:"Height";s:4:"unit";s:2:"cm";s:8:"editable";s:3:"yes";s:7:"options";a:1:{i:0;s:0:"";}}}s:6:"volume";a:2:{s:7:"pricing";a:6:{s:7:"enabled";s:2:"no";s:5:"label";s:0:"";s:4:"unit";s:2:"ml";s:10:"calculator";a:1:{s:7:"enabled";s:2:"no";}s:9:"inventory";a:1:{s:7:"enabled";s:2:"no";}s:6:"weight";a:1:{s:7:"enabled";s:2:"no";}}s:6:"volume";a:4:{s:5:"label";s:15:"Required Volume";s:4:"unit";s:2:"ml";s:8:"editable";s:3:"yes";s:7:"options";a:1:{i:0;s:0:"";}}}s:16:"volume-dimension";a:4:{s:7:"pricing";a:6:{s:7:"enabled";s:2:"no";s:5:"label";s:0:"";s:4:"unit";s:2:"ml";s:10:"calculator";a:1:{s:7:"enabled";s:2:"no";}s:9:"inventory";a:1:{s:7:"enabled";s:2:"no";}s:6:"weight";a:1:{s:7:"enabled";s:2:"no";}}s:6:"length";a:4:{s:5:"label";s:6:"Length";s:4:"unit";s:2:"cm";s:8:"editable";s:3:"yes";s:7:"options";a:1:{i:0;s:0:"";}}s:5:"width";a:4:{s:5:"label";s:5:"Width";s:4:"unit";s:2:"cm";s:8:"editable";s:3:"yes";s:7:"options";a:1:{i:0;s:0:"";}}s:6:"height";a:4:{s:5:"label";s:6:"Height";s:4:"unit";s:2:"cm";s:8:"editable";s:3:"yes";s:7:"options";a:1:{i:0;s:0:"";}}}s:11:"volume-area";a:3:{s:7:"pricing";a:6:{s:7:"enabled";s:2:"no";s:5:"label";s:0:"";s:4:"unit";s:2:"ml";s:10:"calculator";a:1:{s:7:"enabled";s:2:"no";}s:9:"inventory";a:1:{s:7:"enabled";s:2:"no";}s:6:"weight";a:1:{s:7:"enabled";s:2:"no";}}s:4:"area";a:4:{s:5:"label";s:4:"Area";s:4:"unit";s:5:"sq cm";s:8:"editable";s:3:"yes";s:7:"options";a:1:{i:0;s:0:"";}}s:6:"height";a:4:{s:5:"label";s:6:"Height";s:4:"unit";s:2:"cm";s:8:"editable";s:3:"yes";s:7:"options";a:1:{i:0;s:0:"";}}}s:6:"weight";a:2:{s:7:"pricing";a:6:{s:7:"enabled";s:2:"no";s:5:"label";s:0:"";s:4:"unit";s:2:"kg";s:10:"calculator";a:1:{s:7:"enabled";s:2:"no";}s:9:"inventory";a:1:{s:7:"enabled";s:2:"no";}s:6:"weight";a:1:{s:7:"enabled";s:2:"no";}}s:6:"weight";a:4:{s:5:"label";s:15:"Required Weight";s:4:"unit";s:2:"kg";s:8:"editable";s:3:"yes";s:7:"options";a:1:{i:0;s:0:"";}}}s:14:"wall-dimension";a:3:{s:7:"pricing";a:6:{s:7:"enabled";s:2:"no";s:5:"label";s:0:"";s:4:"unit";s:5:"sq cm";s:10:"calculator";a:1:{s:7:"enabled";s:2:"no";}s:9:"inventory";a:1:{s:7:"enabled";s:2:"no";}s:6:"weight";a:1:{s:7:"enabled";s:2:"no";}}s:6:"length";a:4:{s:5:"label";s:25:"Distance around your room";s:4:"unit";s:2:"cm";s:8:"editable";s:3:"yes";s:7:"options";a:1:{i:0;s:0:"";}}s:5:"width";a:4:{s:5:"label";s:6:"Height";s:4:"unit";s:2:"cm";s:8:"editable";s:3:"yes";s:7:"options";a:1:{i:0;s:0:"";}}}}';
+        update_post_meta($post_id, '_wc_price_calculator', $string);
+    }
 }
 
 function insert_product_attributes ($post_id, $available_attributes, $variations)  
@@ -176,7 +181,8 @@ function insert_products ($products)
     if (!empty($products)) // No point proceeding if there are no products
     {
         array_map('insert_product', $products); // Run 'insert_product' function from above for each product
-    }
+        //insert_product($products[0],$custom_size);
+    }   
 }
 
 function edit_products ($products)  

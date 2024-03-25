@@ -1,11 +1,11 @@
 <?php
 /**
- * Plugin Name: WooCommerce Measurement Price Calculator
+ * Plugin Name: WooCommerce Measurement Price Calculator- modified
  * Plugin URI: http://www.woothemes.com/products/measurement-price-calculator/
  * Description: WooCommerce plugin to provide price and quantity calculations based on product measurements
  * Author: WooThemes / SkyVerge
  * Author URI: http://www.woothemes.com
- * Version: 3.9.0
+ * Version: 999
  * Text Domain: woocommerce-measurement-price-calculator
  * Domain Path: /i18n/languages/
  *

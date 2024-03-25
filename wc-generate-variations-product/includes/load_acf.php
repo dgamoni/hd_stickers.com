@@ -20,12 +20,6 @@ acf_add_local_field_group(array (
 			),
 			'choices' => array (
 				0 => 'none',
-				15 => 'Accessories',
-				18 => 'Clothes',
-				16 => 'Hoodies',
-				19 => 'Mens',
-				17 => 'Tshirts',
-				25 => 'G',
 			),
 			'default_value' => array (
 			),
@@ -53,11 +47,6 @@ acf_add_local_field_group(array (
 			),
 			'choices' => array (
 				0 => 'new product',
-				44 => 'Die Cut Stickers',
-				45 => 'original Die Cut Stickers',
-				912 => 'Generate stickers',
-				948 => 'Generate stickers',
-				984 => 'Generate stickers',
 			),
 			'default_value' => array (
 				0 => 0,
@@ -480,4 +469,4 @@ acf_add_local_field_group(array (
 	'description' => '',
 ));
 
-endif; 
+endif;
