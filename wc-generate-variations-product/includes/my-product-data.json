@@ -1,0 +1,41 @@
+[
+    {
+        "name"        : "Test stikcers",
+        "sku"         : "TS10009",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ac erat maximus augue accumsan egestas. Quisque posuere augue quis libero molestie posuere.",
+        "available_attributes": [
+            "sticker_size", "sticker_quantity"
+        ],
+        "variations":
+        [
+            {
+                "attributes": {
+                    "sticker_size"  : "3cm X 3cm",
+                    "sticker_quantity" : "50"
+                },
+                "price" : "225.00"
+            },
+            {
+                "attributes": {
+                    "sticker_size"  : "3cm X 3cm",
+                    "sticker_quantity" : "75"
+                },
+                "price" : "337.50"
+            },
+            {
+                "attributes": {
+                    "sticker_size"  : "3cm X 3cm",
+                    "sticker_quantity" : "100"
+                },
+                "price" : "450.00"
+            },
+            {
+                "attributes": {
+                    "sticker_size"  : "3cm X 3cm",
+                    "sticker_quantity" : "150"
+                },
+                "price" : "675.00"
+            }                           
+        ]
+    }
+] 
